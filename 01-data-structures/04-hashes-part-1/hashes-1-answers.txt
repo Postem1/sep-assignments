@@ -1,0 +1,4 @@
+Doubling the size of the array may be beneficial for small lists but as the
+number of elements grow to an absurd level (for just one collision), the
+memory taken will force the cpu to work harder to accommodate the array's
+memory needs
