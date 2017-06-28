@@ -12,24 +12,24 @@ class OpenAddressing
  #Assign an element to the "hash array" given a key and value
   def []=(key, value)
     arr_index = index(key, size)
-    if @items[arr_index] == nil
+    if @items[arr_index] == nil #no existing object at index
         @items[arr_index] = Node.new(key, value)
         @item_count += 1
     elsif (@items[arr_index].key == key) &&
           (@items[arr_index].value == value)
       return @items
-    else
+    else #exisitng element at index
       nextIndex = next_open_index(arr_index)
-      if (@items[arr_index].key == key) &&
-         (@items[arr_index].value != value) &&
-        (nextIndex == -1)
+      if (@items[arr_index].key == key) && #element has same key
+         (@items[arr_index].value != value) && #element has different value
+        (nextIndex == -1) #no space in the array
           resize
-          @items[nextIndex] = Node.new(key, value)
+          @items[arr_index] = Node.new(key, value)  
           @item_count += 1
-      elsif nextIndex == -1
+      elsif nextIndex == -1 # no additional space
         resize
         self[key] = value
-      else
+      else # exisitng elemet but there is space in the array
         @items[nextIndex] = Node.new(key, value)
         @item_count += 1
       end
@@ -59,8 +59,8 @@ class OpenAddressing
   def next_open_index(index)
     while @items[index] != nil
      index += 1
-   end
-   if index >= @items.length
+    end
+    if index >= @items.length
       return -1
     else
       return index
