@@ -24,7 +24,8 @@ class OpenAddressing
          (@items[arr_index].value != value) && #element has different value
         (nextIndex == -1) #no space in the array
           resize
-          @items[arr_index] = Node.new(key, value)  
+          arr_index = index(key, size)
+          @items[arr_index] = Node.new(key, value)
           @item_count += 1
       elsif nextIndex == -1 # no additional space
         resize
