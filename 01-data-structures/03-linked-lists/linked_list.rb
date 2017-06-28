@@ -7,20 +7,17 @@ class LinkedList
 
   # This method creates a new `Node` using `data`, and inserts it at the end of the list.
   def add_to_tail(node)
-    current = @head
-
     if (@head == nil) && (@tail == nil)
       @head = node
       @tail = node
     else
-      while current.next != nil
-        current = current.next
-      end
-      current.next = node
+      @tail.next = node
       @tail = node
       @tail.next = nil
     end
   end
+
+  # head -> a_node -> another_node -> one_more_node -> old_tail -> tail -> nil
 
   # This method removes the last node in the lists and must keep the rest of the list intact.
   def remove_tail
