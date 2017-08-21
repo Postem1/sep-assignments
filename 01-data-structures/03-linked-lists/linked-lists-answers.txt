@@ -1,0 +1,7 @@
+"Spatial Locality" deals with the way that the processor obtains data  from the RAM (and places it in cache)
+
+When the processor access an element in an array, it retrieves an entire range of
+locations (near the element) to reduce the number of times it must read from RAM (which takes longer than cache)
+
+If the processor did not know the location of the rest of the members of a
+data structure, it could only get one member at a time from RAM
