@@ -1,0 +1,38 @@
+Coalesced hashing:
+A hybrid of chaining and open addressing, coalesced hashing links together chains
+of nodes within the table itself. Like open addressing, it achieves space usage
+and (somewhat diminished) cache advantages over chaining.
+Like chaining, it does not exhibit clustering effects; in fact, the table can be
+ efficiently filled to a high density. Unlike chaining, it cannot have more elements than table slots.
+
+ Hopscotch hashing :
+ The algorithm uses a single array of n buckets. For each bucket, its neighborhood
+ is a small collection of nearby consecutive buckets (i.e. ones with close indices to the original hashed bucket).
+ The desired property of the neighborhood is that the cost of finding an item in
+ the buckets of the neighborhood is close to the cost of finding it in the bucket
+ itself. If some bucket's neighborhood is filled, the table is resized.
+
+ 2-choice hashing:
+ 2-choice hashing employs two different hash functions, h1(x) and h2(x), for the hash table.
+ Both hash functions are used to compute two table locations. When an object is
+inserted in the table, then it is placed in the table location that contains fewer
+objects (with the default being the h1(x) table location if there is equality in bucket size).
+2-choice hashing employs the principle of the power of two choices.
+
+Open Addressing print_hash output:
+The Open Addressing hash's Load Factor is: 0.5, the number of items in the hash is: 6.0
+Star Wars: The Empire Strikes Back, Value: Number Five
+Star Wars: Attack of the Clones, Value: Number Two
+Star Wars: A New Hope, Value: Number Four
+Star Wars: Return of the Jedi, Value: Number Six
+Star Wars: The Phantom Menace, Value: Number One
+Star Wars: Revenge of the Sith, Value: Number Three
+
+Separate Chaining print_hash output:
+The Hash's Load factor is: 0.5, the number of items in the hash is: 6.0
+Key: Star Wars: The Empire Strikes Back, Value: Number Five
+Key: Star Wars: Attack of the Clones, Value: Number Two
+Key: Star Wars: Return of the Jedi, Value: Number Six
+Key: Star Wars: A New Hope, Value: Number Four
+Key: Star Wars: The Phantom Menace, Value: Number One
+Key: Star Wars: Revenge of the Sith, Value: Number Three
