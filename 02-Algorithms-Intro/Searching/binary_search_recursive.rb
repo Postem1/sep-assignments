@@ -4,11 +4,11 @@ def binary_search(arr, value )
   low ||= arr[0]
   high ||= arr[-1]
   mid ||= (low + high) / 2
-  
-if value < low || value > high
-  return "Value is not in the array"
-elsif arr[mid] == value
-    return "#{value} found at position #{mid}"
+
+  if value < low || value > high
+    return "Value is not in the array"
+  elsif arr[mid] == value
+      return "#{value} found at position #{mid}"
   elsif arr[mid] > value
     high = mid - 1
     low = arr[0]

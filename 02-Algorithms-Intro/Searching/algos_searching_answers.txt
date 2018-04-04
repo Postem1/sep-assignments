@@ -13,10 +13,7 @@ Recursive: (  0.000894)
 Iterative: (  0.000004)
 Iterative search looks like it's faster at finding fibonnaci numbers
 
-Given that the collection is unsorted, binary search is useless, so I would use an iterative solution to look through
-a million items.
-I would use an iterative solutions because the recursive solution's performance isn't as good ( in this algorithms) due
-to having to call itself multiple times
+Given that the collection is unsorted, binary search is useless, so I would use an iterative solution to look through a million items.
+I would use an iterative solutions because the recursive solution's performance isn't as good ( in this algorithms) due to having to call itself multiple times
 
-Given a sorted collection of a million items, I would choose binary search. I would also use a iterative solution due to
-better performance
+Given a sorted collection of a million items, I would choose binary search.  I would use an iterative solution because the recursive solution will need to call itself quite a bit which would need to worse performance...perhaps even memory issues.
