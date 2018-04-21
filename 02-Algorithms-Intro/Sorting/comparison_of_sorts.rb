@@ -47,4 +47,7 @@ Looking at the bar chart, speculate on why you think some sort algorithms are fa
 
 Some sorting algorithmns seem to be  faster depending on how often they have to iterate through the collection.  The more times it has to compare one element to another, the worse the algorithm's time.
 
+I can speculate that some algorithmns are faster/slower depending on often it has to compare one item from the collection to another
+
+The divide and conquer algorithms seem to work best base on the fact some portion of the collection can already be sorted hence no needed to compare an element to every other.
 =end
