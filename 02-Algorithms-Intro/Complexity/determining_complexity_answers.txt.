@@ -1,0 +1,134 @@
+1. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+goodbye_world.rb
+  def goodbye_world(n)
+   puts "Goodbye World! #{n}"
+  end
+
+Answer: goodbye_world has a Big-O of O(1).  Constant time performance.  The program takes the same amount of time to execute no matter the input size.
+
+2. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+find_largest.rb
+  def find_largest(collection)
+   largest = collection[0]
+   collection.length.times do |i|
+     if collection[i] >= largest
+       largest = collection[i]
+     end
+   end
+   largest
+  end
+
+Answer: find_largest has a Big-0 of (n).  Linear time performance.  The time its takes to find the largest element in the collection grows at a linear rate as the size of the collection increases.
+
+3. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+find_largest_2D_array.rb
+  def find_largest(collection)
+   largest = collection[0][0]
+   collection.length.times do |i|
+     subcollection = collection[i]
+     subcollection.length.times do |j|
+       if subcollection[j] >= largest
+         largest = subcollection[j]
+       end
+     end
+   end
+   largest
+  end
+
+Answer: find_largest_2D_array has a Big-O of (n^2). Quadratic time.  The function is trying to locate the largest element, which is inside a 2D array.  We have 2 loops, one for the outer (i) and another for the inner (j). Each loop will run at 'n' time (linear) since every element in each loop will be compared (worst case). The inner loop will depend on the outer loop in a distributive manner.  Hence the Big-O is n * n...or n^2.
+
+4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+numbers_recursive.rb
+  def numbers(n)
+   if (n == 0)
+     return 0
+   elsif (n == 1)
+     return 1
+   else
+     return numbers(n-1) + numbers(n-2)
+   end
+  end
+
+Answer: The function has Big-O of (2^n).  Each additional increase of 'n', increases the time complexity by power of 2.  When n = 2, it calls itself twice (2 times).  When n = 3, it calls itself 4 times.  When n = 4, it calls itself 8 times.
+
+
+5. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+numbers_iterative.rb
+  def iterative(n)
+   num1 = 0
+   num2 = 1
+
+   i = 0
+   while i < n-1
+     tmp = num1 + num2
+     num1 = num2
+     num2 = tmp
+     i+=1
+   end
+
+   num2
+  end
+
+Answer: The function has Big-O of (n).  Linear Time.  The function will run 'n' times.  The bigger 'n' is, the more the iterations, at a linear rate
+
+
+6. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+sort.rb
+  def sort(collection, from=0, to=nil)
+   if to == nil
+     # Sort the whole collection, by default
+     to = collection.count - 1
+   end
+
+   if from >= to
+     # Done sorting
+     return
+   end
+
+   # Take a pivot value, at the far left
+   pivot = collection[from]
+
+   # Min and Max pointers
+   min = from
+   max = to
+
+   # Current free slot
+   free = min
+
+   while min < max
+     if free == min # Evaluate collection[max]
+       if collection[max] <= pivot # Smaller than pivot, must move
+         collection[free] = collection[max]
+         min += 1
+         free = max
+       else
+         max -= 1
+       end
+     elsif free == max # Evaluate collection[min]
+       if collection[min] >= pivot # Bigger than pivot, must move
+         collection[free] = collection[min]
+         max -= 1
+         free = min
+       else
+         min += 1
+       end
+     else
+       raise "Inconsistent state"
+     end
+   end
+
+   collection[free] = pivot
+
+   sort collection, from, free - 1
+   sort collection, free + 1, to
+
+   collection
+  end
+
+Answer: The Big O of this function is (n^2).  It recursively calls itself repeatedly on the sub arrays of itself.  A recursive call's Big-O is (n).  After each iteration, in the worst case, the subarray size is decreased by only 1, leaving a subarray of size n-1.  The next iteration then will have to compare the next pivot against n-2 other elements.  Essentially, we will make a series n − 1 nested calls before we reach a list of size 1.  Nested loops have a Big-O of n^2
