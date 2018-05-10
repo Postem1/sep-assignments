@@ -1,6 +1,6 @@
 class City
   attr_accessor :name
-  attr_accessor :visited
+  # attr_accessor :visited
   attr_accessor :x
   attr_accessor :y
 
@@ -8,6 +8,6 @@ class City
     @x    = x
     @y    = y
     @name = name
-    @visited = false
+    # @visited = false
   end
 end

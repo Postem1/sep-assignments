@@ -5,35 +5,38 @@ require './city'
 # what is the shortest possible route?
 
 # Nearest Neighbor algorithm:
-# The salesman starts at a random city and repeatedly visits the nearest city until the destination has been reached. It quickly yields a short tour, but usually not the optimal one
+# The salesman starts at a random city and repeatedly visits all cites until all cities have been visited. It quickly yields a short tour, but usually not the optimal one
 
 
 def distance_between(city_1, city_2)
   Math.hypot(city_2.x - city_1.x, city_2.y - city_1.y)
 end
 
-def tsp_nearest_neighbor(cities_array, start_city, destination)
-  start_city.visited = true
-  path = [ [start_city.name, start_city.x, start_city.y] ]
+def tsp_nearest_neighbor(cities_array, start_city)
+  path = []
   current_city = start_city
 
-  while current_city != destination
+  while cities_array.length >= 1
     nearest_neighbor = cities_array[0]
-    nearest_neighbor_dist = distance_between(start_city, destination)
+
+    if nearest_neighbor == current_city
+      nearest_neighbor = cities_array[1]
+    end
+
+    nearest_neighbor_dist = distance_between(current_city, nearest_neighbor)
 
     cities_array.each do |city|
-      if city.visited == true
-        next
-      elsif distance_between(current_city, city) < nearest_neighbor_dist
+      if distance_between(current_city, city) < nearest_neighbor_dist
         nearest_neighbor_dist = distance_between(current_city, city)
         nearest_neighbor = city
       end
     end
 
     path.push([nearest_neighbor.name, nearest_neighbor.x, nearest_neighbor.y])
-    nearest_neighbor.visited = true
     current_city = nearest_neighbor
+    cities_array.delete(nearest_neighbor)
   end
+
   puts path.length
   p path
 end
@@ -447,4 +450,4 @@ cities = [
 #
 # tsp_nearest_neighbor(cities, mia, la)
 #
-tsp_nearest_neighbor(cities, la, dallas)
+tsp_nearest_neighbor(cities, atl)
