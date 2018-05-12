@@ -1,0 +1,14 @@
+CREATE TABLE users(
+  "userid" INTEGER,
+  "name"   VARCHAR(32),
+  "email"  VARCHAR(64),
+  "signup" DATE
+);
+
+INSERT INTO users
+    ("userid", "name",              "email",                        "signup")
+VALUES
+    ( 1,       'Aleesia Algorithm', 'aleesia.algorithm@uw.edu',     '2014-10-24'),
+    ( 2,       'DeAndre Data',      'datad@comcast.net',            '2008-01-20'),
+    ( 3,       'Chris Collection',  'chris.collection@outlook.com', '2012-01-20'),
+    ( 4,       'Brandy Boolean',    'bboolean@nasa.gov',            '1999-10-15');
