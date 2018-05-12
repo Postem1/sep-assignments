@@ -1,0 +1,133 @@
+1. List the commands for adding, updating, and deleting data
+  INSERT INTO table (column1, column2, column3) VALUES (data1, data2, data3);
+
+  UPDATE table SET column1=data1, column3=data3 WHERE column2=data2;
+
+  DELETE FROM table WHERE column=data;
+
+2. Explain the structure for each type of command.
+  INSERT INTO describes the table where the data will go.  VALUES holds the data to be inserted.
+
+  UPDATE describes the table where the information is held.  SET specifies which  column to update and the new value.
+
+  DELETE FROM states the table where the information is held.  The WHERE clause is used to find record based on its value(s)
+
+3. What are some the data types that can be used in tables? Give a real world example of each.
+  timestamp: This datatype can be used to store time...To see if a hotel guest checked in
+  boolean: This datatype can store a TRUE or FALSE value...To see if a hotel guest is a premium member
+  text: This datatype holds a string value...It can hold a guest's first and last name
+  numeric:  This datatype holds numbers and decimals...It can hold the daily price of the hotel room
+
+4. Think through how to create a new table to hold a list of people invited to a wedding.
+  This table needs to have first and last name, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children).
+
+  Which data type would you use to store each of the following pieces of information?
+  First and last name, text
+  Whether they sent in their RSVP, boolean
+  Number of guests, integer
+  Number of meals, numeric
+
+  Write a command that makes the table to track the wedding.
+    CREATE TABLE wedding_list (
+    name text,
+    RSVP_sent? boolean,
+    guests integer,
+    meals numeric(2,1)
+    );
+
+  Using the table we just created, write a command that adds a column to track whether they were sent a thank you card.
+    ALTER TABLE wedding_list
+    ADD COLUMN card boolean;
+
+  You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
+    ALTER TABLE wedding_list
+    DROP COLUMN meals;
+
+  The guests are going to need a place to sit at the reception, so write a command that adds a column for table number.
+    ALTER TABLE wedding_list
+    ADD COLUMN table_number integer;
+
+  The wedding is over and we do not need to keep this information, so write a command that deletes the wedding table from the database.
+    DROP TABLE wedding_list;
+
+5. Write a command to make a new table to hold the books in a library with the columns ISBN, title, author, genre,     publishing date, number of copies, and available copies.
+  CREATE TABLE library (
+  ISBN numeric(),
+  title text,
+  author text,
+  genre text,
+  publishing_date date,
+  num_copies integer,
+  avail_copies integer
+  );
+
+  Find three books and add their information to the table.
+    INSERT INTO library (ISBN, title, author, genre, publishing_date, num_copies, avail_copies)
+    VALUES
+    (8498374610, 'Shelter in Place', 'Nora Robert', scifi, 2018/4/5, 20, 1),
+    (9473840982, 'The Outsider: A novel', 'Stephen King', mystery, 2017/5/6, 20, 1),
+    (2816254789, 'Love and Ruin', 'Paula McLain', fiction, 2017/4/7, 40, 1);
+
+  Someone has just checked out one of the books. Change the available copies column to 1 fewer.
+    UPDATE library SET avail_copies=0 WHERE title='Love and Ruin';
+
+  Now one of the books has been added to the banned books list. Remove it from the table.
+    DELETE FROM library WHERE ISBN=2816254789;
+
+6. Write a command to make a new table to hold spacecrafts.
+  Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and approximate miles from Earth.
+
+  In addition to the table creation, provide commands that perform the following operations:
+  Add 3 non-Earth-orbiting satellites to the table.
+  Remove one of the satellites from the table since it has just been crashed into the planet.
+  Edit another satellite because it is no longer operating and change the value to reflect that.
+
+  CREATE TABLE spacecrafts (
+  id integer,
+  name text,
+  year_launched date,
+  country text,
+  mission text,
+  orbiting text,
+  operating boolean,
+  miles_f_Earth numeric(18,6)
+  );
+
+  INSERT INTO spacecrafts (id, name, year_launched, country, mission, orbiting, operating, miles_f_earth)
+    VALUES
+    (1, "Florida", 2020, "USA", "Look for sunshine", "Jupiter", TRUE, 93837468),
+    (2, "Elizabeth", 2030, "UK", "Find good tea", "Saturn", TRUE, 95858574.49484),
+    (3, "Louis", 2040, "France", "Trouvez les lumieres", "Venus", TRUE, 38475784.383848);
+
+  DELETE FROM spacecrafts WHERE id=3;
+
+  UPDATE spacecrafts SET operating=FALSE WHERE id=2;
+
+7. Write a command to make a new table to hold the emails in your inbox.
+  This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not it’s been read, and the id of the email chain it’s in. Also provide commands that perform the following operations:
+
+  Add 3 new emails to the inbox.
+  You’ve just deleted one of the emails, so write a command to remove the row from the inbox table.
+  You started reading an email but just heard a crash in another room. Mark the email as unread before investigating, so you can come back to it later.
+
+  CREATE TABLE emails (
+    id integer,
+    subject text,
+    sender text,
+    recipients text,
+    body text,
+    timestamp timestamp,
+    read boolean,
+    chain_id integer
+  );
+
+  INSERT INTO emails(id, subject, sender, body, timestamp, read, chain_id)
+    VALUES
+    (1, "New Features", "apple@gmail.com", "We feature iPhone8", TIMESTAMP '2018-05-12 12:00:00', FALSE, 33),
+    (2, "Verizon", "vz@gmail.com", "Your phone bill is high lol", TIMESTAMP '2018-05-11 15:00:00', TRUE, 35),
+    (3, "Sprint", "sprint@gmail.com", "Your phone bill will be high lol", TIMESTAMP '2018-03-04 08:23:01', FALSE, 37);
+
+  DELETE FROM emails WHERE id=1;
+
+  UPDATE emails SET read=FALSE WHERE id=2;
+  
