@@ -1,0 +1,144 @@
+1. Write out a generic SELECT statement.
+  SELECT <column, column>
+  FROM <table1, table2>
+  (optional) WHERE <condition>
+
+2. Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
+  SELECT - SAN
+  FROM   - FRANCISCO
+  WHERE  - WHARF
+
+3. Given this dogs table, write queries to select the following pieces of data:
+
+  Display the name, gender, and age of all dogs that are part Labrador.
+    SELECT name, gender, age
+    FROM dogs
+    WHERE breed LIKE '%labrador%';
+
+    name    gender  age
+    Boujee	F	      3
+    Marley	M	      0
+
+
+  Display the ids of all dogs that are under 1 year old.
+    SELECT id
+    FROM dogs
+    WHERE age < 1;
+
+    id
+    10002
+    10004
+
+  Display the name and age of all dogs that are female and over 35 lbs.
+    SELECT name, age
+    FROM dogs
+    WHERE gender='F' AND weight > 35;
+
+    name	  age
+    Boujee  3
+
+  Display all of the information about all dogs that are not Shepherd mixes.
+    SELECT *
+    FROM dogs
+    WHERE breed NOT LIKE '%shepherd%';
+
+    id	  name	    gender	age	weight	breed	             intake_date  in_foster
+    10001	Boujee	  F	      3	  36	    labrador poodle	   2017-06-22	  (null)
+    10002	Munchkin	F	      0	  8	      dachsund chihuahua 2017-01-13	  2017-01-31
+    10004	Marley	  M	      0	  10	    labrador	         2017-05-04	  2016-06-20
+    10006	Marmaduke	M	      7	  150	    great dane	       2016-03-22	  2016-05-15
+    10007	Rosco	    M	      5	  180	    rottweiler	       2017-04-01	  (null)
+
+  Display the id, age, weight, and breed of all dogs that are either over 60 lbs or Great Danes.
+    SELECT id, age, weight, breed
+    FROM dogs
+    WHERE weight > 60 OR breed LIKE '%great dane%';
+
+    id	  age	weight	breed
+    10006	7	  150	    great dane
+    10007	5	  180	    rottweiler
+
+4. Given this cats table, what records are returned from these queries?
+  SELECT name, adoption_date
+  FROM cats;
+
+    name        adoption_date
+    Mushi       2016-03-22
+    Seashell    NULL
+    Azul        2016-04-17
+    Victoire    2016-09-01
+    Nala        NULL
+
+  SELECT name, age
+  FROM cats;
+
+    name        age
+    Mushi       1
+    Seashell    7
+    Azul        3
+    Victoire    7
+    Nala        1
+
+5. From the cats table, write queries to select the following pieces of data.
+  Display all the information about all of the available cats.
+    SELECT *
+    FROM cats;
+
+  Display the name and sex of all cats who are 7 years old.
+    SELECT name, gender
+    FROM cats
+    WHERE age = 7;
+
+  Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+    SELECT name
+    FROM cats;
+
+
+6. List each comparison operator and explain, in your own words, when you would use it.
+  Include a real world example for each.
+    > (Greater than): Compares 2 values.  Value on left of the symbol has to be bigger than value on right.
+    Can be used to see if a hotel guest is over 18
+    >= (Greater than or equal to): Can be used to see if a value is equal to or greater than another.
+    Can be used to see if a hotel guest is 18 or over.
+
+    < (Less than): Compares 2 values.  Value on left of the symbol has to be smaller than value on right.
+    Can be used to see all restaurants that are less than a mile  away from a hotel.
+    <= (Less than or equal to)
+    Can be used to see all restaurants that one mile or less away from a hotel.
+
+    = (Equal): Compares 2 values for equality.
+    Can be used to see if the first and last name on the reservation match the names on the credit card used.
+    != (Not equal to): Compares 2 values for inequality
+    Can be used to compare a credit card type name against a list of unacceptable cards.
+
+    <> (Greater than or Less than): Compares a value for inequality.
+    Can be used to make sure that room 13 isn't assigned. room_number <> 13
+
+    LIKE: Can be used to match a pattern on a string value.
+    Get a list of last month guests whose last name begins with Will.
+
+    BETWEEN: Used to obtain data in a specific range.
+    Get a list of guests that spent $300-$500 in the past week.  total BETWEEN 300 AND 500
+
+    IS NULL: Existence test of a value.
+    Can be used to see a list of current guests that have not registered on website. registrd IS NULL
+
+    AND: Compares 2 expressions.  Both expressions must be true.
+    Can be used to see a list of guests that are above 30 AND registered.
+
+    OR: Compares 2 expressions.  One of the expressions must be true.
+    Can be used to see a list of guests that are above 40 or staying over 3 days
+
+    NOT: Evaluates an expression for inequality.
+    Can be used to get a list of guests that are not premium.
+    WHERE NOT premium = TRUE
+
+7. From the cats table, what data is returned from these queries?
+  SELECT name FROM cats WHERE gender = ‘F’;
+    The name of all female cats
+
+  SELECT name FROM cats WHERE age <> 3;
+    The name of all cats that greater than OR less than 3 years old ( not 3)
+
+  SELECT ID FROM cats WHERE name != ‘Mushi’ AND gender = ‘M’;
+    The id of all male cats not named 'Mushi'
