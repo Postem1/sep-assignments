@@ -230,6 +230,6 @@ Example: In a classroom, a primary key can be used to uniquely identify the diff
     JOIN books AS b ON t.isbn = b.isbn
     WHERE t.checked_in_date IS NULL;
     name	title	checked_out_date	checked_in_date
-    
+
     Terry Boot	Advanced Potion-Making	2018-08-02T00:00:00.000Z	null
     Cedric Diggory	Fantastic Beasts and Where to Find Them	2018-08-04T00:00:00.000Z	null
