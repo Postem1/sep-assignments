@@ -32,7 +32,7 @@
    2018-08-03 |      4 |       4 | Oscar      | Robinson
    2018-08-03 |      5 |       4 | Oscar      | Robinson
   (4 rows)
-  
+
 
   Find bookings for a guest who has booked one room several times on different dates.
 
@@ -60,7 +60,8 @@
 
   SELECT roomid, COUNT(DISTINCT guestid) AS num_of_guests
   FROM bookings
-  GROUP BY roomid;
+  GROUP BY roomid
+  Having num_of_guests > 1;
 
   roomid | num_of_guests
  --------+---------------
